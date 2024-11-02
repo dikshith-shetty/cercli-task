@@ -73,3 +73,7 @@ Employee Database Management System will manage the employee data sets. This wil
 ### API Details:
 - POST /api/v1/time-off - To create new time off
 - GET /api/v1/time-off/{employeeId} - To get the list of time off's for an employee
+
+### Solution
+- We implemented business logic within the service layer to validate constraints, avoiding reliance on the database for this validation. Using SQL procedures and triggers could slow down the system. Our service class is designed to handle the logic to verify if the required criteria are met."
+- Additionally, we used enums to represent leave categories. Since leave categories and their overlapping rules are predefined, enums provide a clear and efficient way to represent these categories and manage overlapping criteria.

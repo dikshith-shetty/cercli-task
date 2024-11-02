@@ -3,6 +3,7 @@ package com.cercli.controller;
 
 import com.cercli.controller.request.TimeOffRequest;
 import com.cercli.entity.TimeOff;
+import com.cercli.exception.ConstrainNotMetException;
 import com.cercli.service.TimeOffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,13 @@ public class TimeOffController {
     TimeOffService timeOffService;
 
     @PostMapping
-    public TimeOff createTimeOff(TimeOffRequest timeOffRequest) {
-        return timeOffService.save(timeOffRequest);
+    public String createTimeOff(TimeOffRequest timeOffRequest) {
+        try {
+            return timeOffService.save(timeOffRequest).toString();
+        } catch (ConstrainNotMetException e) {
+            return "Time off request constrain not met";
+        }
+
     }
 
     @GetMapping("/{employeeId}")

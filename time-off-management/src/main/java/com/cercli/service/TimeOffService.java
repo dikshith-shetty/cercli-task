@@ -4,6 +4,7 @@ package com.cercli.service;
 import com.cercli.controller.request.TimeOffRequest;
 import com.cercli.entity.TimeOff;
 import com.cercli.enums.RequestCategory;
+import com.cercli.exception.ConstrainNotMetException;
 import com.cercli.repository.TimeOffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,9 +42,9 @@ public class TimeOffService {
                 (existingCategory.equals(RequestCategory.ANNUAL_LEAVE) && newCategory.equals(RequestCategory.WORK_REMOTELY));
     }
 
-    public TimeOff save(TimeOffRequest timeOffRequest) {
+    public TimeOff save(TimeOffRequest timeOffRequest) throws ConstrainNotMetException {
         if(!isRequestValid(timeOffRequest)) {
-            throw new RuntimeException();
+            throw new ConstrainNotMetException();
         }
 
         TimeOff timeOff = new TimeOff();

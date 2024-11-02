@@ -16,7 +16,7 @@
 5. Navigate to the Cercli-task dir and run followings
    ```cmd
    terraform init
-   terrafrom apply
+   terraform apply
    ``` 
 
 ## 1. Employee Database Management System
@@ -50,3 +50,26 @@ Employee Database Management System will manage the employee data sets. This wil
 
 
 ## 2. Time Off Management System
+
+### Build and Run: 
+1. Navigate to the `time-off-management` directory:
+    ```cmd
+    cd time-off-management
+    ```
+
+2. Build the project using Maven:
+    ```cmd
+    mvn clean install
+    ```
+
+3. Run the service:
+    ```cmd
+    mvn spring-boot:run
+    ```
+
+4. Access the service:
+    - The service will be available at `http://localhost:8081/swagger-ui/index.html)`
+  
+### API Details:
+- POST /api/v1/time-off - To create new time off
+- GET /api/v1/time-off/{employeeId} - To get the list of time off's for an employee
